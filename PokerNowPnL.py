@@ -62,10 +62,15 @@ def get_data(log):
             stacks.at[row['hand'], player] = 0
             buyins.at[row['hand'], player] = -amount
 
-        if 'approved' in row['entry']:
+        # if 'approved' in row['entry']:
+        #     player = extract_player_names(row['entry'])[0]
+        #     amount = int(row['entry'].split()[-1][:-1])
+        #     buyins.at[row['hand'], player] = amount
+
+        if 'joined' in row['entry']:
             player = extract_player_names(row['entry'])[0]
             amount = int(row['entry'].split()[-1][:-1])
-            buyins.at[row['hand'], player] = amount
+            buyins.at[row['hand']+1, player] = amount
         
         if 'updated' in row['entry']:
             player = extract_player_names(row['entry'])[0]
